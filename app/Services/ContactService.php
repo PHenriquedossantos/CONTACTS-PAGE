@@ -35,7 +35,7 @@ class ContactService
 	{
 		return Contact::create($_DATA);
 	}
-
+	
 	public function find(int $_ID): Contact
 	{
 		return Contact::findOrFail($_ID);
@@ -47,7 +47,7 @@ class ContactService
 		$_CONTACT->update($_DATA);
 		return $_CONTACT;
 	}
-
+	
 	public function delete(int $_ID): void
 	{
 		$_CONTACT = $this->find($_ID);

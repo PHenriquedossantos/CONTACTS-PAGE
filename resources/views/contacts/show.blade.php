@@ -15,10 +15,6 @@
                 </div>
 
                 <div class="card-body bg-light px-5 py-4">
-                    <div class="mb-4 pb-2 border-bottom">
-                        <span class="text-muted small">ID</span>
-                        <h5 class="fw-bold mb-0">{{ $_CONTACT->id }}</h5>
-                    </div>
 
                     <div class="mb-4 pb-2 border-bottom">
                         <span class="text-muted small">Nome</span>

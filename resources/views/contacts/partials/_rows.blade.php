@@ -1,6 +1,5 @@
 @forelse($_CONTACTS as $_CONTACT)
     <tr>
-        <td class="align-middle">{{ $_CONTACT->id }}</td>
         <td class="align-middle">{{ $_CONTACT->name }}</td>
         <td class="align-middle">{{ $_CONTACT->contact }}</td>
         <td class="align-middle">{{ $_CONTACT->email }}</td>

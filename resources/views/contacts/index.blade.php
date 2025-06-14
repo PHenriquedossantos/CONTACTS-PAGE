@@ -22,7 +22,6 @@
   <table class="table table-striped table-hover align-middle">
     <thead class="table-light">
       <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Contact</th>
         <th>Email</th>

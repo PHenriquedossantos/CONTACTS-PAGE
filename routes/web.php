@@ -4,16 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-	return view('welcome');
-});
-
-
 Route::get('login',  [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout',[AuthController::class, 'logout'])->name('logout');
 
-Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
 
 Route::middleware('auth')->group(function () {
 	Route::get('contacts/create', [ContactController::class, 'create'])->name('contacts.create');

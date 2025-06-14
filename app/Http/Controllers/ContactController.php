@@ -15,7 +15,6 @@ class ContactController extends Controller
 	public function __construct(ContactService $_CONTACT_SERVICE)
 	{
 		$this->_CONTACT_SERVICE = $_CONTACT_SERVICE;
-		//$this->middleware('auth')->except(['index', 'show']);
 	}
 	
 	public function index(Request $request)
@@ -23,7 +22,6 @@ class ContactController extends Controller
 		try {
 			$_SEARCH = $request->query('search', '');
 			$_CONTACTS = $this->_CONTACT_SERVICE->list(15, $_SEARCH);
-
 			if ($request->ajax()) {
 					return view('contacts.partials._rows', compact('_CONTACTS'))->render();
 			}
@@ -104,7 +102,6 @@ class ContactController extends Controller
 		$_IN_NAME    = $request->input('name');
 		$_IN_CONTACT = $request->input('contact');
 		$_IN_EMAIL   = $request->input('email');
-
 		try {
 			$this->_CONTACT_SERVICE->update($_ID, [
 				'name'    => $_IN_NAME,
