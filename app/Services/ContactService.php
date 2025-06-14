@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Contact;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class ContactService
 {
@@ -33,6 +34,7 @@ class ContactService
 	
 	public function create(array $_DATA): Contact
 	{
+		$_DATA['user_id'] = Auth::id();
 		return Contact::create($_DATA);
 	}
 	
