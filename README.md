@@ -19,7 +19,7 @@ funcionalidades:
 
 ## 🚀 Instalação e Configuração
 
-Copie e cole todo este bloco no terminal para rodar de uma vez:
+Comandos para terminal:
 
 ```bash
 # 1. Clonar o repositório
