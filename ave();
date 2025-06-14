@@ -1,0 +1,11 @@
+[90m= [39m[34;4mApp\Models\Contact[39;24m {#5042
+    [34mid[39m: [35m1[39m,
+    [34muser_id[39m: [35m1[39m,
+    [34mname[39m: "[32mAditya Beer[39m",
+    [34mcontact[39m: "[32m316438915[39m",
+    [34memail[39m: "[32mleo.bednar@example.com[39m",
+    [34mcreated_at[39m: "[32m2025-06-14 17:29:15[39m",
+    [34mupdated_at[39m: "[32m2025-06-14 17:29:15[39m",
+    [34mdeleted_at[39m: [36mnull[39m,
+  }
+

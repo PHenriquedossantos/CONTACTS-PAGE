@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateContactRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +23,18 @@ class UpdateContactRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->route('id');
-        return [
-          'name'    => 'required|string|min:6',
-          'contact' => "required|digits:9|unique:contacts,contact,{$id}",
-          'email'   => "required|email|unique:contacts,email,{$id}",
-        ];
+				return [
+					'name'    => 'required|string|min:6',
+					'contact' => [
+							'required',
+							'digits:9',
+							Rule::unique('contacts', 'contact')->ignore($id), // <-- Aqui está a diferença!
+					],
+					'email'   => [
+							'required',
+							'email',
+							Rule::unique('contacts', 'email')->ignore($id),
+					],
+			];
     }
 }

@@ -6,6 +6,7 @@ use App\Services\ContactService;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
@@ -17,19 +18,22 @@ class ContactController extends Controller
 		//$this->middleware('auth')->except(['index', 'show']);
 	}
 	
-	public function index()
+	public function index(Request $request)
 	{
-		####
-		# return blade contact.index
 		try {
-			$_CONTACTS = $this->_CONTACT_SERVICE->list();
+			$_SEARCH = $request->query('search', '');
+			$_CONTACTS = $this->_CONTACT_SERVICE->list(15, $_SEARCH);
+
+			if ($request->ajax()) {
+					return view('contacts.partials._rows', compact('_CONTACTS'))->render();
+			}
 			return view('contacts.index', compact('_CONTACTS'));
-		} catch (\Throwable $_EX) 
-		{
+		} catch (\Throwable $_EX) {
 			Log::error("Erro ao listar contatos: {$_EX->getMessage()}");
 			return back()->withErrors(config('messages.contact.list_error'));
 		}
 	}
+	
 	
 	public function create()
 	{
@@ -60,8 +64,9 @@ class ContactController extends Controller
 		}
 	}
 	
-	public function show(int $_ID)
+	public function show($_ID)
 	{
+		$id = (int) $_ID;
 		####  
 		# Display individual contact details by ID with error handling
 		try {
@@ -99,14 +104,14 @@ class ContactController extends Controller
 		$_IN_NAME    = $request->input('name');
 		$_IN_CONTACT = $request->input('contact');
 		$_IN_EMAIL   = $request->input('email');
-		
+
 		try {
 			$this->_CONTACT_SERVICE->update($_ID, [
 				'name'    => $_IN_NAME,
 				'contact' => $_IN_CONTACT,
 				'email'   => $_IN_EMAIL,
 			]);
-			return redirect()->route('contacts.show', $_ID)->with('success', config('messages.contact.update_success'));
+			return redirect()->route('contacts.index', $_ID)->with('success', config('messages.contact.update_success'));
 		} catch (ModelNotFoundException $_EX) 
 		{
 			return redirect()->route('contacts.index')->withErrors(config('messages.contact.not_found_update'));

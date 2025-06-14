@@ -9,14 +9,10 @@ class StoreContactRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-	public function authorize(): bool
-	{
-		return [
-				'name'    => 'required|string|min:6',
-				'contact' => 'required|digits:9|unique:contacts,contact',
-				'email'   => 'required|email|unique:contacts,email',
-			];
-	}
+    public function authorize(): bool
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -26,7 +22,9 @@ class StoreContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'    => 'required|string|min:6',
+            'contact' => 'required|digits:9|unique:contacts,contact',
+            'email'   => 'required|email|unique:contacts,email',
         ];
     }
 }
